@@ -51,8 +51,28 @@ code {
   margin: 0 auto;
 }
 
-header {
+header.sticky-header {
   .dark-area();
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .column {
+    display: flex;
+    align-items: center;
+  }
+
+  .push {
+    flex-grow: 1;
+  }
+}
+
+header.big-header {
+  .dark-area();
+  position: relative;
+  z-index: 2;
   text-align: center;
   padding: 10em 0;
 

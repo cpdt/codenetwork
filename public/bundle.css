@@ -2669,26 +2669,44 @@ code span.error {
   padding: 10px;
   margin: 0 auto;
 }
-header {
+header.sticky-header {
   background-color: #333;
   color: #eee;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+header.sticky-header .column {
+  display: flex;
+  align-items: center;
+}
+header.sticky-header .push {
+  flex-grow: 1;
+}
+header.big-header {
+  background-color: #333;
+  color: #eee;
+  position: relative;
+  z-index: 2;
   text-align: center;
   padding: 10em 0;
 }
-header h2 {
+header.big-header h2 {
   font-size: 1.2em;
   margin: 2em 0;
 }
-header .spinner {
+header.big-header .spinner {
   width: 9em;
   position: relative;
   height: 1.3em;
   overflow: hidden;
 }
-header .spinner span {
+header.big-header .spinner span {
   display: block;
 }
-header .spinner-inner {
+header.big-header .spinner-inner {
   color: #eee;
   position: absolute;
   top: 0;

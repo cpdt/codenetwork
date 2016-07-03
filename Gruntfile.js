@@ -5,12 +5,12 @@ module.exports = function(grunt) {
             font: ['public/fonts'],
             js: ['public/bundle.js'],
             css: ['public/bundle.css'],
-            html: ['public/**/*.html']
+            html: { src: ['public/*', '!public/bundle.js', '!public/bundle.css'], filter: 'isFile' }
         },
         copy: {
             img: { expand: true, cwd: 'src/img/', src: ['*'], dest: 'public/img/' },
             font: { expand: true, cwd: 'src/fonts/', src: ['*'], dest: 'public/fonts/' },
-            html: { expand: true, cwd: 'src/', src: ['**/*.html'], dest: 'public/' }
+            html: { expand: true, cwd: 'src/', src: ['*'], dest: 'public/', filter: 'isFile' }
         },
         browserify: {
             dev: {

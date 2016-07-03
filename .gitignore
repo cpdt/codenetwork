@@ -1,3 +1,11 @@
+## CodeNetwork server specifics
+# Make sure the app info isn't leaked
+server/fb-private-config.js
+
+# Stuff that isn't ready to be commited yet
+server
+views
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs

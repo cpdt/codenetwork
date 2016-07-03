@@ -10053,9 +10053,10 @@ var messages = [
     "open source",
     "beasts",
     "software",
-    "AdamBot",
-    "Jubb",
-    "startups"
+    "startups",
+    "skynet",
+    "websites",
+    "hackathons"
 ];
 
 $('header h2 span').typed({

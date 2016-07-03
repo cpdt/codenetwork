@@ -1,10 +1,20 @@
 {
-  "name": "codenetwork",
+  "name": "cn-server",
   "version": "1.0.0",
   "description": "",
-  "main": "Gruntfile.js",
-  "dependencies": {},
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fb": "^1.1.1",
+    "koa": "^1.2.0",
+    "koa-static": "^2.0.0"
+  },
   "devDependencies": {
+    "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
@@ -12,10 +22,5 @@
     "grunt-contrib-less": "^1.3.0",
     "jquery": "^3.0.0",
     "typed.js": "^1.1.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }
