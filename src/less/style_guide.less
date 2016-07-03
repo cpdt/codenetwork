@@ -1,0 +1,51 @@
+// The CODE NETWORK style guide in LESS form
+
+@dark-bg: #333;
+@med-bg: #666;
+@light-bg: #eee;
+@theme: #8DC641;
+
+.light-area() {
+  background-color: #FFF;
+  color: @dark-bg;
+}
+
+.semi-light-area() {
+  background-color: @light-bg;
+  color: @dark-bg;
+}
+
+.dark-area() {
+  background-color: @dark-bg;
+  color: @light-bg;
+}
+
+.body-font() {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0; // tracking of 0
+}
+
+.h1-font() {
+  font-family: 'Montserrat', sans-serif;
+  // todo: extra bold
+  font-weight: 800;
+  letter-spacing: 0.1em; // tracking of 100
+  text-transform: uppercase;
+  font-size: 2em;
+}
+
+.h2-font(@custom-size: 1.5em) {
+  font-family: 'Montserrat', sans-serif;
+  // todo: semibold
+  font-weight: 600;
+  letter-spacing: 0.1em; // tracking of 100
+  text-transform: uppercase;
+  font-size: @custom-size;
+}
+
+.code-font() {
+  font-family: 'Hack', monospace;
+  font-weight: normal;
+  letter-spacing: 0; // tracking of 0
+}
