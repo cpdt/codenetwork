@@ -1,42 +1,22 @@
+require('typed.js');
 var $ = require('jquery');
 
-var runningInterval = false;
-var updateTime = 2000;
+var messages = [
+    "whatever",
+    "robots",
+    "open source",
+    "beasts",
+    "software",
+    "AdamBot",
+    "Jubb",
+    "startups"
+];
 
-var $spanChildren = $('.spinner-inner span');
-var spanHeights = $spanChildren.height();
-
-var $spinner = $(".spinner");
-$spinner.height(spanHeights);
-
-var $spinnerInners = $(".spinner-inner");
-
-function update() {
-    console.log('updating');
-    $spinnerInners.each(function() {
-        var $spinnerInner = $(this);
-        var currentTop = parseFloat($spinnerInner.css('top'));
-        var newTop = currentTop - spanHeights;
-
-        if (-newTop >= $spinnerInner.height()) {
-            $spinnerInner.css({
-                transition: 'none',
-                top: 0
-            });
-            setTimeout(function() {
-                $spinnerInner.css({
-                    transition: '',
-                    top: -spanHeights
-                });
-            }, 0);
-        } else $spinnerInner.css('top', newTop);
-
-        //$spinnerInner.css('top', parseFloat($spinnerInner.css('top')) - spanHeights);
-    });
-}
-
-exports.start = function() {
-    if (runningInterval !== false) return;
-
-    runningInterval = setInterval(update, updateTime);
-};
+$('header h2 span').typed({
+    strings: messages,
+    typeSpeed: 40,
+    startDelay: 150,
+    backSpeed: 20,
+    showCursor: false,
+    loop: true
+});

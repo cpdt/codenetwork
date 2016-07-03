@@ -1,1 +1,3 @@
-require('./spinner').start();
+window.jQuery = require('jquery');
+
+require('./spinner');

@@ -2679,10 +2679,6 @@ header h2 {
   font-size: 1.2em;
   margin: 2em 0;
 }
-header h2 > span {
-  display: inline-block;
-  vertical-align: top;
-}
 header .spinner {
   width: 9em;
   position: relative;
