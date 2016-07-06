@@ -6,6 +6,7 @@ const path = require('path');
 const debugNotModified = require('debug')('cn:304');
 const debugOk = require('debug')('cn:200');
 
+const config = require('./config');
 const partials = require('./partials');
 
 const EJSPartial = trea.EJSPartial;

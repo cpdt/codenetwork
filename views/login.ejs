@@ -1,0 +1,18 @@
+<% include templates/header.ejs %>
+
+<section class="column">
+    <h1>Login</h1>
+    <p>Login to access the administration panel</p>
+</section>
+
+<section class="grey"><div class="column">
+    <form action="/admin" method="post">
+        <table>
+            <tr><td><label for="txt_username">Username:</label></td><td><input type="text" name="username" id="txt_username"></td></tr>
+            <tr><td><label for="txt_password">Password:</label></td><td><input type="password" name="password" id="txt_password"></td></tr>
+        </table>
+        <button type="submit">Login</button>
+    </form>
+</div></section>
+
+<% include templates/footer.ejs %>

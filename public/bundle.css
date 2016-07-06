@@ -2617,6 +2617,13 @@ body {
   letter-spacing: 0;
   background-color: #FFF;
   color: #333;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.site-wrapper {
+  flex-grow: 1;
+  margin-top: 74px;
 }
 h1 {
   font-family: 'Montserrat', sans-serif;
@@ -2662,6 +2669,48 @@ code span.error {
   background-color: #F00;
   color: #FFF;
 }
+form table td {
+  padding: 2px;
+}
+input {
+  padding: 4px;
+  border: solid 1px #666;
+  background-color: #FFF;
+  font-weight: 300;
+  width: 15em;
+  transition: border-color 0.2s;
+}
+input:focus {
+  border-color: #8DC641;
+}
+button,
+a.button,
+.button a {
+  display: inline-block;
+  color: #FFF;
+  background-color: #8DC641;
+  padding: 5px 8px;
+  text-decoration: none;
+  border: none;
+}
+input,
+button,
+a.button,
+.button a {
+  transition: box-shadow 0.2s;
+  outline: none;
+}
+input:focus,
+button:focus,
+a.button:focus,
+.button a:focus {
+  -webkit-box-shadow: 0 0 5px 0 #8dc641;
+  -moz-box-shadow: 0 0 5px 0 #8dc641;
+  box-shadow: 0 0 5px 0 #8dc641;
+}
+img {
+  max-width: 100%;
+}
 .column {
   box-sizing: border-box;
   max-width: 900px;
@@ -2677,6 +2726,7 @@ header.sticky-header {
   top: 0;
   left: 0;
   right: 0;
+  height: 74px;
 }
 header.sticky-header .column {
   display: flex;
@@ -2688,6 +2738,7 @@ header.sticky-header .push {
 header.big-header {
   background-color: #333;
   color: #eee;
+  margin-top: -74px;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -2761,13 +2812,6 @@ footer p a {
 .description .button {
   margin-top: 5px;
 }
-.description .button a {
-  display: inline-block;
-  color: #FFF;
-  background-color: #8DC641;
-  padding: 5px 8px;
-  text-decoration: none;
-}
 .double-events {
   display: flex;
 }
@@ -2778,6 +2822,7 @@ footer p a {
 .event {
   font-weight: 300;
   font-size: 0.95em;
+  margin-top: 10px;
 }
 .event.big-event {
   display: flex;
@@ -2814,7 +2859,6 @@ footer p a {
 }
 .event:not(.big-event) {
   margin-right: 10px;
-  margin-top: 10px;
 }
 .event:not(.big-event) .event-image {
   height: 200px;
