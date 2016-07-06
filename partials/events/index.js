@@ -1,49 +1,36 @@
-const fs = require('fs');
 const path = require('path');
+const util = require('util');
 const co = require('co');
-const ejs = require('ejs');
-const Promise = require('bluebird');
+const trea = require('trea');
+const partials = require('../');
 
-module.exports = co.wrap(function *(db) {
-    // during init stage, fs sync is fine
-    let templateFile = path.join(__dirname, 'template.ejs');
-    let templateContent = fs.readFileSync(templateFile, 'utf8');
-    let template = ejs.compile(templateContent, {
-        filename: templateFile
-    });
+const EJSPartial = trea.EJSPartial;
 
-    let eventsCollection = db.collection('events');
-    let configCollection = db.collection('config');
+function EventsPartial(db) {
+    EJSPartial.call(this);
+    
+    this.path = path.join(__dirname, 'template.ejs');
+    this.partials = partials;
+    this.db = db;
+    
+    this.configCollection = db.collection('config');
+    this.eventsCollection = db.collection('events');
+}
+util.inherits(EventsPartial, EJSPartial);
 
-    // find the most recent event
-    let latestRecord = yield eventsCollection.find().limit(1).sort({ $natural: -1 }).next();
+EventsPartial.prototype._needsUpdate = co.wrap(function*(since) {
+    let latestRecord = yield this.eventsCollection.find().limit(1).sort({ $natural: -1 }).next();
     let latestUpdate = latestRecord._id.getTimestamp();
-    let contentCache = false;
-
-    const regenContent = co.wrap(function *() {
-        // find how many events to fetch
-        let fetchCount = (yield configCollection.find({ key: { $eq: 'eventDisplayCount' } }).limit(1).next()).value || 3;
-        let events = yield eventsCollection.find().limit(fetchCount).sort({ $natural: -1 }).toArray();
-
-        // render the template w/ fetched events
-        contentCache = template({ events });
-        return contentCache;
-    });
-
-    return {
-        latestUpdate: () => latestUpdate,
-        getContents: co.wrap(function *() {
-            if (contentCache === false) return [yield regenContent(), true];
-
-            // find if a new event has been published
-            let newLatestRecord = yield eventsCollection.find().limit(1).sort({ $natural: -1 }).next();
-            if (newLatestRecord._id !== latestRecord._id) {
-                latestRecord = newLatestRecord;
-                latestUpdate = latestRecord._id.getTimestamp();
-                return [yield regenContent(), true];
-            }
-
-            return [contentCache, false];
-        })
-    };
+    return latestUpdate > since;
 });
+
+EventsPartial.prototype._generate = co.wrap(function*() {
+    let fetchCount = (yield this.configCollection.find({
+        key: { $eq: 'eventDisplayCount' }
+    }).limit(1).next()).value || 3;
+    let events = yield this.eventsCollection.find().limit(fetchCount).sort({ $natural: -1 }).toArray();
+    
+    return EJSPartial.prototype._generate.call(this, { events });
+});
+
+module.exports = EventsPartial;

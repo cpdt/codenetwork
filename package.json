@@ -18,7 +18,8 @@
     "koa-compress": "^1.0.9",
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
-    "mongodb": "^2.1.18"
+    "mongodb": "^2.1.18",
+    "trea": "^0.1.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
