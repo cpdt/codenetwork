@@ -1,7 +1,80 @@
 <% include templates/header.ejs %>
 
 <section class="column">
-    <h1>Admin Console</h1>
+    <h1>Admin Console <span class="small">(<a href="/admin/logout">Sign out</a>)</span></h1>
+    <h2>Events</h2>
+    <table class="event-list">
+        <thead>
+            <tr>
+                <th class="row-priority"></th>
+                <th class="row-name">Name</th>
+                <th class="row-when">When/where</th>
+                <th class="row-description">Description</th>
+                <th class="row-link"></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="5"><a href="/admin/edit-event/new"><i class="fa fa-plus"></i> Add event</a></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Code Network Winter Hackathon</td>
+                <td>5PM Friday 12 August - 8PM Sunday 14 August</td>
+                <td><p><strong>Get Hyped!</strong></p><p>Thrilled to announce Code Networks Winter Hackathon. Lets make it huge. We will be kitting out J Block for the event. Prizes, sponsor announcements and more details will be coming soon.</p><p>Last years Hackathon was a great result, but we intentionally kept it smaller than we wanted because it was our first time hosting such an event. We have a lot more space, and hopefully budget, this time around so go HAM with inviting your friends, enemies and event people you disagree with Tabs VS Spaces.</p><p><strong>Who should come?</strong></p><p>Anyone! Whilst the majority will be software developers and designers, the best things are built when people from a bunch of different backgrounds come together.</p></td>
+                <td>
+                    <a href="/events/hackathon.html" title="View this event" target="_blank">Link</a>
+                    <a href="/admin/edit-event/0" class="button" title="Edit this event"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Weekly Friday Meetups</td>
+                <td>6PM Every Friday at Q218</td>
+                <td><p><code><span>while</span> (likesRobots <span>&amp;&amp;</span> likesDemos) attendCodenetworkFridayMeetup = <span class='error' title="Unknown identifier 'ture'">ture</span>;</code></p><p>We hold weekly Friday meetups from 6PM @ GP Q218. Standups, live-code, robots, demos, pizza, and more...</p><p>This week NaN will be talking about <strong>undefined</strong>.</p></td>
+                <td>
+                    <a href="/events/friday.html" title="View this event" target="_blank">Link</a>
+                    <a href="/admin/edit-event/1" class="button" title="Edit this event"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Weekly Tuesday Coding</td>
+                <td>Every Tuesday at ???</td>
+                <td><p>Every Tuesday we meet up at ??? to smash out some code and discuss things. Just rock up whenever with your desktop, laptop, tablet, phone, smart watch, whatever and get to work.</p></td>
+                <td>
+                    <a href="/events/tuesday.html" title="View this event" target="_blank">Link</a>
+                    <a href="/admin/edit-event/2" class="button" title="Edit this event"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
+<section class="grey"><div class="column">
+    <h2>Configuration</h2>
+    <form method="post" action="/admin/config-set/">
+        <table>
+            <tr>
+                <td><label for="num_eventDisplayCount">Number of events to show on homepage:</label></td>
+                <td><input type="number" name="eventDisplayCount" id="num_eventDisplayCount" value="3" /></td>
+            </tr>
+            <tr>
+                <td><label for="num_activityDisplayCount">Number of activities to show on homepage:</label></td>
+                <td><input type="number" name="activityDisplayCount" id="num_activityDisplayCount" value="4" /></td>
+            </tr>
+            <tr>
+                <td><label for="num_fbAppId">Facebook App ID:</label></td>
+                <td><input type="number" name="fbAppId" id="num_fbAppId" value="807401006028587" /></td>
+            </tr>
+            <tr>
+                <td><label for="txt_fbAppSecret">Facebook App Secret:</label></td>
+                <td><input type="text" name="fbAppSecret" id="txt_fbAppSecret" placeholder="●●●●●●●●" /></td>
+            </tr>
+        </table>
+        <button type="submit">Update</button>
+    </form>
+</div></section>
 
 <% include templates/footer.ejs %>

@@ -48,8 +48,10 @@ co(function*() {
 
     // add routes
     router.get('/', routeView('index'));
-    router.get('/login', routeView('login'));
     router.get('/admin', routeView('admin'));
+    router.get('/admin/login', routeView('login'));
+    router.get('/admin/logout', routeView('logout'));
+    router.get('/event/:slug', routeView('event'));
 
     yield Array.from(viewCache.values()).map(partial => partial.init());
 

@@ -2646,6 +2646,16 @@ h3 {
   text-transform: uppercase;
   font-size: 1.3em;
 }
+h1 .small,
+h2 .small,
+h3 .small {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0;
+  font-size: 0.7em;
+  text-transform: none;
+  color: #666;
+}
 a {
   color: #8DC641;
   text-decoration: underline;
@@ -2668,9 +2678,6 @@ code span {
 code span.error {
   background-color: #F00;
   color: #FFF;
-}
-form table td {
-  padding: 2px;
 }
 input {
   padding: 4px;
@@ -2710,6 +2717,43 @@ a.button:focus,
 }
 img {
   max-width: 100%;
+}
+table {
+  border-collapse: collapse;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+table thead tr {
+  background-color: #333;
+  color: #eee;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+table tfoot tr {
+  text-align: center;
+}
+table tfoot tr td {
+  border: none;
+}
+table td,
+table th {
+  border: solid 1px #333;
+  padding: 5px;
+}
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+form table td {
+  padding: 2px;
+  border: none;
 }
 .column {
   box-sizing: border-box;
@@ -2953,4 +2997,40 @@ footer p a {
   font-size: 1.2em;
   text-align: center;
   margin: 20px 0;
+}
+table.event-list {
+  table-layout: fixed;
+  width: 100%;
+}
+table.event-list td:nth-child(4) > * {
+  display: inline;
+}
+table.event-list td:nth-child(4) > *:after {
+  content: ' ';
+}
+table.event-list td:nth-child(5) {
+  padding: 0 0 0 5px;
+  position: relative;
+}
+table.event-list td:nth-child(5) .button {
+  position: absolute;
+  right: 0;
+  top: -1px;
+  bottom: 0;
+  z-index: 1;
+}
+table.event-list .row-priority {
+  width: 1%;
+}
+table.event-list .row-name {
+  width: 29%;
+}
+table.event-list .row-when {
+  width: 20%;
+}
+table.event-list .row-description {
+  width: 42%;
+}
+table.event-list .row-link {
+  width: 8%;
 }

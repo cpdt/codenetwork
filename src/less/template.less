@@ -38,6 +38,15 @@ h3 {
   .h2-font(1.3em);
 }
 
+h1, h2, h3 {
+  .small {
+    .body-font();
+    font-size:0.7em;
+    text-transform:none;
+    color:@med-bg;
+  }
+}
+
 a {
   color: @theme;
   text-decoration: underline;
@@ -62,9 +71,6 @@ code {
   }
 }
 
-form table td {
-  padding: 2px;
-}
 input {
   padding: 4px;
   border: solid 1px @med-bg;
@@ -91,6 +97,40 @@ input:focus, button:focus, a.button:focus, .button a:focus {
 
 img {
   max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  font-weight: 300;
+  font-size: 0.9em;
+
+  thead tr {
+    .dark-area();
+    .h2-font(1em);
+  }
+  tfoot tr {
+    text-align: center;
+    td {
+      border: none;
+    }
+  }
+  td, th {
+    border: solid 1px @dark-bg;
+    padding: 5px;
+  }
+  tr:nth-child(even) {
+    background-color: @light-bg;
+  }
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+form table td {
+  padding: 2px;
+  border: none;
 }
 
 .column {
@@ -361,4 +401,46 @@ footer {
   font-size: 1.2em;
   text-align: center;
   margin: 20px 0;
+}
+
+table.event-list {
+  table-layout: fixed;
+  width: 100%;
+
+  td:nth-child(4) {
+    > * {
+      display: inline;
+    }
+    > *:after {
+      content: ' ';
+    }
+  }
+  td:nth-child(5) {
+    padding: 0 0 0 5px;
+    position: relative;
+
+    .button {
+      position: absolute;
+      right: 0;
+      top: -1px;
+      bottom: 0;
+      z-index: 1;
+    }
+  }
+
+  .row-priority {
+    width: 1%;
+  }
+  .row-name {
+    width: 29%;
+  }
+  .row-when {
+    width: 20%;
+  }
+  .row-description {
+    width: 42%;
+  }
+  .row-link {
+    width: 8%;
+  }
 }
