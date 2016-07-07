@@ -5,6 +5,7 @@
 # Make sure the app info isn't leaked
 server/fb-private-config.js
 config/development.json
+config/production.json
 
 # Stuff that isn't ready to be commited yet
 server

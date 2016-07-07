@@ -21,7 +21,7 @@ const port = process.env.PORT || config.port || 3000;
 let viewCache = new Map();
 
 co(function*() {
-    let db = yield MongoClient.connect(config.dburl);
+    let db = yield MongoClient.connect("mongodb://" + config.dbuser + ":" + config.dbpass + "@" + config.dburl);
     initDebug('connected to ' + config.dburl);
 
     function routeView(view) {
@@ -52,6 +52,12 @@ co(function*() {
     router.get('/admin', routeView('admin'));
 
     yield Array.from(viewCache.values()).map(partial => partial.init());
+
+    for (let [name, view] of viewCache) {
+        initDebug('pre-rendering ' + name);
+        yield view.generate();
+    }
+
     app.listen(port);
     initDebug('listening on port ' + port);
 }).catch(function(err) {

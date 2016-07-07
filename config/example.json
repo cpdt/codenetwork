@@ -1,0 +1,6 @@
+{
+  "dburl": "host:port/db",
+  "dbuser": "",
+  "dbpass": "",
+  "port": 25
+}
