@@ -7,7 +7,7 @@ const partials = require('../');
 
 const EJSPartial = trea.EJSPartial;
 
-function NotFoundPartial(db) {
+function NotFoundPartial(param, db) {
     EJSPartial.call(this);
     
     this.path = path.join(__dirname, 'template.ejs');
@@ -23,10 +23,11 @@ NotFoundPartial.prototype._needsUpdate = function() {
     return true;
 };
 
-NotFoundPartial.prototype._generate = co.wrap(function*() {
+NotFoundPartial.prototype._generate = co.wrap(function*(partial, p) {
     let result = yield this.errorMessagesCollection.aggregate([{ $sample: { size: 1 } }]).next();
-    return EJSPartial.prototype._generate.call(this, {
-        message: result.text
+    return EJSPartial.prototype._generate.call(this, partial, {
+        message: result.text,
+        params: p.params
     });
 });
 

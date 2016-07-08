@@ -2,6 +2,9 @@
 
 <section class="column">
     <h1>Admin Console <span class="small">(<a href="/admin/logout">Sign out</a>)</span></h1>
+    <div class="box info-box">
+        <p><strong>Success.</strong> You've been logged in.</p>
+    </div>
     <h2>Events</h2>
     <table class="event-list">
         <thead>
@@ -76,5 +79,18 @@
         <button type="submit">Update</button>
     </form>
 </div></section>
+<section class="column">
+    <h2>Server Management</h2>
+    <form method="post" action="/admin">
+        <input type="hidden" name="action" value="clear-cache">
+        <button type="submit">Clear cache</button>
+    </form>
+    <p>
+        The server caches pages and page fragments to avoid fetching and rendering data unecessarily. Most operations
+        that modify data should clear the caches for their respective operations, however if something fails to update,
+        use this button to clear the entire cache. Note: this will not reload page files from the disk - a server
+        restart is required in order to do that.
+    </p>
+</section>
 
 <% include templates/footer.ejs %>

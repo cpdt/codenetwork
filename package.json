@@ -22,6 +22,8 @@
     "trea": "^0.1.0"
   },
   "devDependencies": {
+    "brace": "^0.8.0",
+    "dropzone": "^4.3.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-cli": "^1.2.0",

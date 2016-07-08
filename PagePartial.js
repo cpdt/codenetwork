@@ -30,23 +30,27 @@ PagePartial.prototype._init = co.wrap(function*() {
 });
 
 PagePartial.prototype._doRequested = co.wrap(function*(ctx) {
+    let param = { params: ctx.params };
+    
     if (ctx.request.headers['if-modified-since']) {
         let modifiedTime = new Date(ctx.request.headers['if-modified-since']);
-        let needsUpdateSince = yield this.needsUpdate(modifiedTime);
+        let needsUpdateSince = yield this.needsUpdate(modifiedTime, param);
         
         if (!needsUpdateSince) {
-            ctx.response.set('last-modified', this.genTime.toUTCString());
+            let genTime = this.genTime(param).toUTCString();
+            ctx.response.set('last-modified', genTime);
             ctx.response.status = 304;
             ctx.body = '';
-            debugNotModified(this.name + ' - ' + modifiedTime.toUTCString() + ' >= ' + this.genTime.toUTCString());
+            debugNotModified(this.name + ' - ' + modifiedTime.toUTCString() + ' >= ' + genTime);
             return;
         }
     }
 
-    let rendered = yield this.generate();
-    ctx.response.set('last-modified', this.genTime.toUTCString());
+    let rendered = yield this.generate(null, param);
+    let genTime = this.genTime(param).toUTCString();
+    ctx.response.set('last-modified', genTime);
     ctx.body = rendered;
-    debugOk(this.name + ' - generated at ' + this.genTime.toUTCString());
+    debugOk(this.name + ' - generated at ' + genTime);
 });
 
 module.exports = PagePartial;

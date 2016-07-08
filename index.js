@@ -51,14 +51,10 @@ co(function*() {
     router.get('/admin', routeView('admin'));
     router.get('/admin/login', routeView('login'));
     router.get('/admin/logout', routeView('logout'));
+    router.get('/admin/edit-event/:id', routeView('edit-event'));
     router.get('/event/:slug', routeView('event'));
 
     yield Array.from(viewCache.values()).map(partial => partial.init());
-
-    for (let [name, view] of viewCache) {
-        initDebug('pre-rendering ' + name);
-        yield view.generate();
-    }
 
     app.listen(port);
     initDebug('listening on port ' + port);

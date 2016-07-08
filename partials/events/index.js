@@ -8,7 +8,7 @@ const partials = require('../');
 
 const EJSPartial = trea.EJSPartial;
 
-function EventsPartial(db) {
+function EventsPartial(param, db) {
     EJSPartial.call(this);
     
     this.path = path.join(__dirname, 'template.ejs');
@@ -26,7 +26,7 @@ EventsPartial.prototype._needsUpdate = co.wrap(function*(since) {
     return latestUpdate > since;
 });
 
-EventsPartial.prototype._generate = co.wrap(function*() {
+EventsPartial.prototype._generate = co.wrap(function*(partial, p) {
     let fetchCount = (yield this.configCollection.find({
         key: { $eq: 'eventDisplayCount' }
     }).limit(1).next()).value || 3;
@@ -76,7 +76,10 @@ EventsPartial.prototype._generate = co.wrap(function*() {
         }
     }
 
-    return EJSPartial.prototype._generate.call(this, { events: newEvents });
+    return EJSPartial.prototype._generate.call(this, partial, {
+        events: newEvents,
+        params: p.params
+    });
 });
 
 module.exports = EventsPartial;
