@@ -11,6 +11,8 @@ const partials = require('./partials');
 
 const EJSPartial = trea.EJSPartial;
 
+const initTime = new Date();
+
 function PagePartial(view, db) {
     EJSPartial.call(this);
 
@@ -29,9 +31,16 @@ PagePartial.prototype._init = co.wrap(function*() {
     return yield EJSPartial.prototype._init.call(this, this.db);
 });
 
+PagePartial.prototype._needsUpdate = function(date) {
+    return initTime > date;
+};
+
 PagePartial.prototype._doRequested = co.wrap(function*(ctx) {
-    let param = { params: ctx.params };
-    
+    let param = {
+        params: ctx.params,
+        method: ctx.request.method
+    };
+
     if (ctx.request.headers['if-modified-since']) {
         let modifiedTime = new Date(ctx.request.headers['if-modified-since']);
         let needsUpdateSince = yield this.needsUpdate(modifiedTime, param);
@@ -41,12 +50,12 @@ PagePartial.prototype._doRequested = co.wrap(function*(ctx) {
             ctx.response.set('last-modified', genTime);
             ctx.response.status = 304;
             ctx.body = '';
-            debugNotModified(this.name + ' - ' + modifiedTime.toUTCString() + ' >= ' + genTime);
+            debugNotModified(this.name + ' - ' + modifiedTime.toUTCString() + ' <= ' + genTime);
             return;
         }
     }
 
-    let rendered = yield this.generate(null, param);
+    let rendered = yield this.generate(null, param, ctx, param);
     let genTime = this.genTime(param).toUTCString();
     ctx.response.set('last-modified', genTime);
     ctx.body = rendered;

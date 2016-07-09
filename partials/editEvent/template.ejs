@@ -1,47 +1,56 @@
 <section class="column">
-    <h1>Editing Event: <%= params.id %></h1>
+    <% if (message) { %><div class="box info-box"><p><%- message %></p></div><% } %>
+    <% if (error) { %><div class="box error-box"><p><%- error %></p></div><% } %>
+    <% if (newEvent) { %><h1>Creating Event</h1><% } else { %><h1>Editing Event: <%= event.name %></h1><% } %>
 
-    <form method="post" action="/admin/edit-event/<%= params.id %>">
+    <form method="post" action="/admin/event/<%= params.id %>" enctype="multipart/form-data" class="has-editors">
         <table class="big-form-table">
             <tr>
                 <td><label for="txt_name">Name:</label></td>
-                <td><input type="text" id="txt_name" name="name" value="Code Network Winter Hackathon" placeholder="Code Network Winter Hackathon" required /></td>
+                <td><input type="text" id="txt_name" name="name" value="<%= event.name %>" placeholder="<%= event.name %>" required /></td>
+            </tr>
+            <tr>
+                <td><label for="check_big">Big event:</label><p>Controls size on the homepage</p></td>
+                <td><input type="checkbox" id="check_big" name="big" <% if (event.isBig) { %>checked<% } %>></td>
             </tr>
             <tr>
                 <td><label for="num_priority">Priority:</label><p>Controls ordering on the homepage</p></td>
-                <td><input type="number" id="num_priority" name="priority" value="1" placeholder="1" required /></td>
+                <td><input type="number" id="num_priority" name="priority" value="<%= event.priority %>" placeholder="<%= event.priority %>" required /></td>
             </tr>
             <tr>
                 <td><label for="txt_when">When/where:</label></td>
-                <td><input type="text" id="txt_when" name="when" value="5PM Friday 12 August - 8PM Sunday 14 August" placeholder="5PM Friday 12 August - 8PM Sunday 14 August" required></td>
+                <td><input type="text" id="txt_when" name="when" value="<%= event.whenWhere %>" placeholder="<%= event.whenWhere %>" required></td>
             </tr>
             <tr>
                 <td><label for="txt_description">Description:</label><p>Markdown supported</p></td>
-                <td><textarea id="txt_description" name="description" class="editor" data-mode="markdown">## Get Hyped!
-Thrilled to announce Code Networks Winter Hackathon. Lets make it huge. We will be kitting out J Block for the event. Prizes, sponsor announcements and more details will be coming soon.
-
-Last years Hackathon was a great result, but we intentionally kept it smaller than we wanted because it was our first time hosting such an event. We have a lot more space, and hopefully budget, this time around so go HAM with inviting your friends, enemies and event people you disagree with Tabs VS Spaces.
-
-### Who should come?
-Anyone! Whilst the majority will be software developers and designers, the best things are built when people from a bunch of different backgrounds come together.
-
-Bla bla bla</textarea></td>
+                <td>
+                    <textarea id="txt_description" name="description" class="hidden"></textarea>
+                    <div class="editor" data-mode="markdown"><%= event.rawDescription %></div>
+                </td>
             </tr>
             <tr>
                 <td><label for="upload_smallimg">Small image:</label><p>Displayed on the homepage</p></td>
-                <td><div class="img-upload" name="small-img"></div></td>
+                <td>
+                    <div class="preview"></div>
+                    <input type="file" id="upload_smallimg" name="small-img" title="Upload your small image"<% if (event.smallImagePath) { %> data-initial="/upload/<%= event.smallImagePath %>"<% } %>>
+                </td>
             </tr>
             <tr>
                 <td><label for="upload_bigimg">Big image:</label><p>Displayed on the event page</p></td>
-                <td><div class="img-upload" name="big-img"></div></td>
+                <td>
+                    <div class="preview"></div>
+                    <input type="file" id="upload_bigimg" name="large-img" title="Upload your large image"<% if (event.bigImagePath) { %>data-initial="/upload/<%= event.bigImagePath %>"<% } %>>
+                </td>
             </tr>
             <tr>
                 <td><label for="txt_actions">Action links:</label>
                     <p>Format is</p><p><code>font-class, url, text description</code></p></td>
-                <td><textarea id="txt_actions" name="actions" class="editor" data-mode="plain_text">calendar-o, https://www.eventbrite.com.au/e/the-code-network-winter-hackathon-tickets-26368697484, Sign up
-facebook, https://www.facebook.com/groups/WeCodeAlot/permalink/1615503708748043/, Discussion</textarea></td>
+                <td>
+                    <textarea id="txt_actions" name="actions" class="hidden"></textarea>
+                    <div class="editor" data-mode="plain_text"><%= event.actions %></div>
+                </td>
             </tr>
         </table>
-        <button type="submit">Update Event</button>
+        <button type="submit"><% if (newEvent) { %>Create Event<% } else { %>Update Event<% } %></button>
     </form>
 </section>

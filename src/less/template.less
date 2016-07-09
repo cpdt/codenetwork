@@ -12,6 +12,10 @@
   border: none;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   .body-font();
   .light-area();
@@ -56,22 +60,22 @@ a:hover {
   text-decoration: none;
 }
 
-code {
+code, pre {
   .code-font();
   .semi-light-area();
+}
+pre {
+  padding: 10px;
+}
+code {
   font-size: 0.9em;
-  padding: 2px;
-
-  span {
-    color: @theme;
-  }
-  span.error {
-    background-color: #F00;
-    color: #FFF;
-  }
+  padding: 2px 0;
+}
+pre code {
+  padding: 0;
 }
 
-input, textarea {
+input:not([type=checkbox]), textarea {
   padding: 4px;
   border: solid 1px @med-bg;
   background-color: #FFF;
@@ -133,6 +137,7 @@ table {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
   }
 }
 
@@ -148,6 +153,9 @@ form table td {
   padding: 1px 10px;
   p {
     margin: 9px 0;
+  }
+  a {
+    color: #FFF;
   }
 }
 .info-box {
@@ -332,7 +340,6 @@ footer {
 .event.big-event {
   display: flex;
   .left, .right {
-    flex-grow: 1;
     flex-basis: 50%;
   }
   .event-image {
@@ -373,6 +380,8 @@ footer {
   .event-image {
     height: 200px;
     position: relative;
+    background-size: cover;
+    background-position: center;
 
     h3 {
       position: absolute;
@@ -553,9 +562,18 @@ table.event-list {
 }
 
 .event-description {
+  h1, h2, h3 {
+    margin: 10px 0 5px 0;
+  }
   p, h1, h2, h3 {
-    margin: 10px 0;
     line-height: 1.5em;
+  }
+  p {
+    margin: 10px 0;
+    font-weight: 300;
+  }
+  h1 + p, h2 + p, h3 + p {
+    margin-top: 5px;
   }
 }
 
@@ -585,9 +603,15 @@ table.event-list {
   td:nth-child(2) {
     width: 70%;
 
-    input, textarea {
+    input:not([type=checkbox]), textarea {
       box-sizing: border-box;
       width: 100%;
     }
   }
+}
+
+.preview {
+  border: solid 1px @med-bg;
+  border-bottom: none;
+  padding: 5px;
 }

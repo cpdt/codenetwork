@@ -19,9 +19,11 @@ module.exports = function(name, ...params) {
 
 let partials = {
     events: require('./events'),
+    event: require('./event'),
     activity: require('./activity'),
     notFound: require('./notFound'),
-    editEvent: require('./editEvent')
+    editEvent: require('./editEvent'),
+    adminEvents: require('./adminEvents')
 };
 
 let partialCache = new Map();

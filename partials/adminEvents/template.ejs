@@ -1,0 +1,29 @@
+<h2>Events</h2>
+<table class="event-list">
+    <thead>
+        <tr>
+            <th class="row-priority"></th>
+            <th class="row-name">Name</th>
+            <th class="row-when">When/where</th>
+            <th class="row-description">Description</th>
+            <th class="row-link"></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="5"><a href="/admin/event/new"><i class="fa fa-plus"></i> Add event</a></td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <% for (var i = 0; i < events.length; i++) { var event = events[i]; %><tr>
+            <td><%= event.priority %></td>
+            <td><%= event.name %></td>
+            <td><%= event.whenWhere %></td>
+            <td><%- event.renderedShortDescription %></td>
+            <td>
+                <a href="/event/<%= event.slug %>" title="View this event" target="_blank">Link</a>
+                <a href="/admin/event/<%= event.slug %>" class="button" title="Edit this event"><i class="fa fa-edit"></i></a>
+            </td>
+        </tr><% } %>
+    </tbody>
+</table>

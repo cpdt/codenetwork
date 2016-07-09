@@ -14,14 +14,21 @@
     "debug": "^2.2.0",
     "ejs": "^2.4.2",
     "fb": "^1.1.1",
+    "highlight.js": "^9.5.0",
     "koa": "^1.2.0",
+    "koa-body": "^1.4.0",
     "koa-compress": "^1.0.9",
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
+    "marked": "^0.3.5",
     "mongodb": "^2.1.18",
-    "trea": "^0.1.0"
+    "sanitize-html": "^1.12.0",
+    "slug": "^0.9.1",
+    "trea": "^0.1.0",
+    "trunc-html": "^1.0.2"
   },
   "devDependencies": {
+    "blueimp-load-image": "^2.6.1",
     "brace": "^0.8.0",
     "dropzone": "^4.3.0",
     "grunt": "^1.0.1",

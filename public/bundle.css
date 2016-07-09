@@ -2611,6 +2611,71 @@ textarea {
   font-weight: 900;
   font-style: normal;
 }
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #8e908c;
+}
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #c82829;
+}
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5871f;
+}
+/* Tomorrow Yellow */
+.hljs-attribute {
+  color: #eab700;
+}
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #718c00;
+}
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+  color: #4271ae;
+}
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #8959a8;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: white;
+  color: #4d4d4c;
+  padding: 0.5em;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
+}
+.hidden {
+  display: none;
+}
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
@@ -2663,23 +2728,25 @@ a {
 a:hover {
   text-decoration: none;
 }
-code {
+code,
+pre {
   font-family: 'Hack', monospace;
   font-weight: normal;
   letter-spacing: 0;
   background-color: #eee;
   color: #333;
+}
+pre {
+  padding: 10px;
+}
+code {
   font-size: 0.9em;
-  padding: 2px;
+  padding: 2px 0;
 }
-code span {
-  color: #8DC641;
+pre code {
+  padding: 0;
 }
-code span.error {
-  background-color: #F00;
-  color: #FFF;
-}
-input,
+input:not([type=checkbox]),
 textarea {
   padding: 4px;
   border: solid 1px #666;
@@ -2766,6 +2833,7 @@ table td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 form table td {
   padding: 2px;
@@ -2779,6 +2847,9 @@ form table td {
 }
 .box p {
   margin: 9px 0;
+}
+.box a {
+  color: #FFF;
 }
 .info-box {
   background-color: #8DC641;
@@ -2953,7 +3024,6 @@ footer p a {
 }
 .event.big-event .left,
 .event.big-event .right {
-  flex-grow: 1;
   flex-basis: 50%;
 }
 .event.big-event .event-image {
@@ -2987,6 +3057,8 @@ footer p a {
 .event:not(.big-event) .event-image {
   height: 200px;
   position: relative;
+  background-size: cover;
+  background-position: center;
 }
 .event:not(.big-event) .event-image h3 {
   position: absolute;
@@ -3155,12 +3227,25 @@ table.event-list .row-link {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33000000', endColorstr='#b3000000', GradientType=0);
   /* IE6-9 */
 }
+.event-description h1,
+.event-description h2,
+.event-description h3 {
+  margin: 10px 0 5px 0;
+}
 .event-description p,
 .event-description h1,
 .event-description h2,
 .event-description h3 {
-  margin: 10px 0;
   line-height: 1.5em;
+}
+.event-description p {
+  margin: 10px 0;
+  font-weight: 300;
+}
+.event-description h1 + p,
+.event-description h2 + p,
+.event-description h3 + p {
+  margin-top: 5px;
 }
 .button-list {
   margin: 0;
@@ -3186,10 +3271,15 @@ table.event-list .row-link {
 .big-form-table td:nth-child(2) {
   width: 70%;
 }
-.big-form-table td:nth-child(2) input,
+.big-form-table td:nth-child(2) input:not([type=checkbox]),
 .big-form-table td:nth-child(2) textarea {
   box-sizing: border-box;
   width: 100%;
+}
+.preview {
+  border: solid 1px #666;
+  border-bottom: none;
+  padding: 5px;
 }
 /*
  * The MIT License

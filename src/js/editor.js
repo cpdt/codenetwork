@@ -18,3 +18,22 @@ $('.editor').each(function() {
     session.setUseWrapMode(true);
     session.setWrapLimitRange();
 });
+
+$('.has-editors').submit(function(e) {
+    console.log('submit!');
+
+    var $editors = $(this).find('.editor');
+    $editors.each(function() {
+        /*var $editor = $(this);
+        var $textareas = $editor.siblings('textarea');
+        var editor = editors[$editor.data('editor-id')];
+        $textareas.val(editor.getSession().getValue());
+
+        console.log('setting', $textareas, 'for', $editor);*/
+
+        var $editor = $(this);
+        var $textareas = $editor.siblings('textarea');
+        var editor = ace.edit(this);
+        $textareas.val(editor.getSession().getValue());
+    });
+});

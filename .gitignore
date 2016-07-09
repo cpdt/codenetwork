@@ -4,6 +4,9 @@
 # Mongo store
 .data
 
+# Uploads directory
+public/upload/*
+
 # Make sure the app info isn't leaked
 server/fb-private-config.js
 config/development.json

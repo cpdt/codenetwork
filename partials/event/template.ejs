@@ -1,0 +1,13 @@
+<section class="image-big" style="background-image:url(/upload/<%= event.bigImagePath %>)">
+    <div class="column">
+        <div>
+            <h1><%= event.name %></h1>
+            <p><%= event.whenWhere %></p>
+        </div>
+    </div>
+</section>
+<%- include('actions', { actions: actions }) %>
+<section class="column event-description">
+    <%- event.renderedDescription %>
+</section>
+<%- include('actions', { actions: actions }) %>

@@ -1,0 +1,7 @@
+<% if (actions.length) { %>
+<section class="grey"><div class="column">
+        <ul class="button-list">
+            <% for (var i = 0; i < actions.length; i++) { var action = actions[i]; %><li><a href="<%= action.link %>" class="button" target="_blank"><i class="fa fa-<%= action.icon%>"></i> <%= action.text %></a></li><% } %>
+        </ul>
+    </div></section>
+<% } %>
